@@ -1,10 +1,17 @@
 ---
 - hosts: all
+  vars: 
+    essentials: 
+      - vim
+      - bash-completion
+  become: yes
   tasks:
-    - name: ensure ntpd is at the latest version
-      yum: pkg=ntp state=latest
-      notify:
-      - restart ntpd
-  handlers:
-    - name: restart ntpd
-      service: name=ntpd state=restarted
+    - name: Upgrade all packages with agnostisc
+      package:
+        name: '*'
+        state: latest
+    - name: Install essential packages
+      package: 
+        name: "{{essentials}}"
+        state: latest
+      
