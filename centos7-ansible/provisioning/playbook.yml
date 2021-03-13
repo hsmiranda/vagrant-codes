@@ -1,0 +1,17 @@
+---
+- hosts: all
+  vars: 
+    essentials: 
+      - vim
+      - bash-completion
+  become: yes
+  tasks:
+    - name: Upgrade all packages with agnostisc
+      package:
+        name: '*'
+        state: latest
+    - name: Install essential packages
+      package: 
+        name: "{{essentials}}"
+        state: latest
+      
