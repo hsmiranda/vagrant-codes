@@ -11,4 +11,8 @@ Vagrant.configure("2") do |config|
     h.memory = 2048
     h.vmname = "rhel9-lab"
   end
+  config.vm.provision :ansible do |ansible| 
+    ansible.playbook = "ansible/playbook.yml"
+    ansible.verbose = true
+  end
 end

@@ -1,0 +1,13 @@
+---
+- hosts: all
+  vars: 
+    essentials: 
+      - vim
+      - bash-completion
+  become: true
+  tasks:
+    - name: Install essential packages
+      package: 
+        name: "{{essentials}}"
+        state: latest
+      
