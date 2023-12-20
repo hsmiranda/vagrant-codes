@@ -1,0 +1,14 @@
+$script = <<-'SCRIPT'
+echo "Teste"
+sudo dnf install vim -y
+date > /etc/vagrant_provisioned_at
+SCRIPT
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "generic/rocky8"
+  config.vm.provider "hyperv" do |h|
+    h.cpus = 2
+    h.memory = 4096
+    h.vmname = "rocky8-lab"
+  end
+end
